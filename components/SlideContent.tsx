@@ -1453,7 +1453,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
               HONRA
             </span>
           </div>
-          <h2 className="text-[clamp(2.5rem,5vw,5rem)] lg:text-[7vh] font-display leading-[0.9] text-white uppercase tracking-tighter mb-6">
+          <h2 className="text-[clamp(1.5rem,5vw,5rem)] lg:text-[7vh] font-display leading-[0.9] text-white uppercase tracking-tighter mb-6">
             {slide.title}
           </h2>
 
@@ -1498,16 +1498,16 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
     const conditions = rawContent.length > 0 ? rawContent.slice(1) : [];
 
     return (
-      <div className="flex flex-col h-full relative px-6 md:px-16 lg:px-24 justify-center overflow-hidden">
-        {/* Background Visuals */}
-        <div className="absolute top-0 right-[-10%] opacity-[0.03] pointer-events-none">
+      <div className="flex flex-col h-full relative px-6 md:px-16 lg:px-24 justify-start lg:justify-center overflow-y-auto lg:overflow-hidden py-10 lg:py-0">
+        {/* Background Visuals - HIDDEN ON MOBILE */}
+        <div className="hidden lg:block absolute top-0 right-[-10%] opacity-[0.03] pointer-events-none">
           <Network size={800} strokeWidth={0.5} />
         </div>
-        <div className="absolute bottom-0 left-[-10%] opacity-[0.03] pointer-events-none rotate-180">
+        <div className="hidden lg:block absolute bottom-0 left-[-10%] opacity-[0.03] pointer-events-none rotate-180">
           <Network size={600} strokeWidth={0.5} />
         </div>
 
-        <header className="mb-12 relative z-10 max-w-5xl">
+        <header className="mb-12 relative z-10 max-w-5xl shrink-0">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-8 h-[2px] bg-purple-600" />
             <span className="text-[10px] font-black uppercase tracking-[0.6em] text-purple-500/80 font-ui">
@@ -1542,7 +1542,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
           )}
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10 w-full max-w-6xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10 w-full max-w-6xl pb-8 lg:pb-0">
           {conditions.map((item, i) => (
             <motion.div
               key={i}
