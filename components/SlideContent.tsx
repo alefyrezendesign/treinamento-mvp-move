@@ -1736,7 +1736,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
             <motion.span
               animate={{ opacity: [0, 1, 0] }}
               transition={{ duration: 0.8, repeat: Infinity, ease: "steps(2)" }}
-              className="inline-block w-[3px] h-[1.2em] bg-purple-500 ml-1 align-middle shadow-[0_0_10px_rgba(168,85,247,0.8)]"
+              className="inline-block w-[3px] h-[1.2em] bg-white ml-1 align-middle shadow-[0_0_10px_rgba(255,255,255,0.8)]"
             />
           </motion.h2>
         </div>
