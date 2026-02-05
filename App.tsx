@@ -30,6 +30,7 @@ const App: React.FC = () => {
   });
 
   const appRef = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLElement>(null);
 
   const goToNext = useCallback(() => {
     setState(prev => ({
@@ -61,6 +62,12 @@ const App: React.FC = () => {
     localStorage.setItem('move_training_slides', JSON.stringify(newSlides));
   };
 
+  const handleScrollReset = () => {
+    if (window.innerWidth <= 768 && mainRef.current) {
+      mainRef.current.scrollTop = 0;
+    }
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!state.hasStarted || state.isEditMode) return;
@@ -77,7 +84,7 @@ const App: React.FC = () => {
       ref={appRef}
       className="fixed inset-0 bg-[#050505] text-white overflow-hidden flex flex-col font-sans h-[100dvh]"
     >
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" onExitComplete={handleScrollReset}>
         {!state.hasStarted ? (
           <LandingScreen
             key="landing"
@@ -91,6 +98,7 @@ const App: React.FC = () => {
             key="presentation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="flex-1 flex flex-col relative overflow-hidden h-full"
           >
             {/* Elementos de Fundo */}
@@ -126,7 +134,7 @@ const App: React.FC = () => {
             </header>
 
             {/* Slide Area */}
-            <main className="flex-1 relative flex flex-col overflow-y-auto">
+            <main ref={mainRef} className="flex-1 relative flex flex-col overflow-y-auto">
               {(() => {
                 const isFullScreen = slides[state.currentSlideIndex].fullScreen;
                 return (

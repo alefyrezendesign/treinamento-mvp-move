@@ -1711,35 +1711,34 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
             />
           </motion.div>
 
-          {/* Closing Message */}
-          <div className="space-y-6">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-2xl lg:text-4xl text-zinc-300 font-display font-light"
-            >
-              Bom, é isso.
-            </motion.p>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-[clamp(2.5rem,6vw,5rem)] font-display font-black uppercase leading-[0.9] text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 tracking-tighter"
-            >
-              VAMOS JUNTOS <br /><span className="text-purple-500">ATÉ O FINAL.</span>
-            </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="text-xl lg:text-2xl text-zinc-400 font-mono uppercase tracking-[0.2em] pt-4"
-            >
-              Ninguém fica pra trás!
-            </motion.p>
-          </div>
+          {/* Typewriter Text */}
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              visible: { transition: { staggerChildren: 0.08, delayChildren: 0.5 } }
+            }}
+            className="text-2xl lg:text-4xl text-white font-medium tracking-wide leading-relaxed max-w-3xl font-sans"
+          >
+            {Array.from("Vamos juntos até o final. Ninguém fica para trás.").map((char, i) => (
+              <motion.span
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, display: "none" },
+                  visible: { opacity: 1, display: "inline" }
+                }}
+                transition={{ duration: 0 }}
+              >
+                {char}
+              </motion.span>
+            ))}
+            <motion.span
+              animate={{ opacity: [0, 1, 0] }}
+              transition={{ duration: 0.8, repeat: Infinity, ease: "steps(2)" }}
+              className="inline-block w-[3px] h-[1.2em] bg-purple-500 ml-1 align-middle shadow-[0_0_10px_rgba(168,85,247,0.8)]"
+            />
+          </motion.h2>
         </div>
       </div>
     );
