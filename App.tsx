@@ -84,7 +84,7 @@ const App: React.FC = () => {
       ref={appRef}
       className="fixed inset-0 bg-[#050505] text-white overflow-hidden flex flex-col font-sans h-[100dvh]"
     >
-      <AnimatePresence mode="wait" onExitComplete={handleScrollReset}>
+      <AnimatePresence mode="wait">
         {!state.hasStarted ? (
           <LandingScreen
             key="landing"
@@ -140,7 +140,7 @@ const App: React.FC = () => {
                 return (
                   <div className="flex-1 flex items-center justify-center p-0">
                     <div className="w-full h-full flex flex-col justify-center">
-                      <AnimatePresence mode="wait" initial={false}>
+                      <AnimatePresence mode="wait" initial={false} onExitComplete={handleScrollReset}>
                         <motion.div
                           key={state.currentSlideIndex}
                           initial={{ opacity: 0, y: isFullScreen ? 0 : 10, scale: isFullScreen ? 1 : 0.99 }}

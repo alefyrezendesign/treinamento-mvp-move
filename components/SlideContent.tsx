@@ -726,10 +726,10 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
     );
   }
 
-  // DESIGN FINALIZAÇÃO (Slide 39)
+  // DESIGN FINALIZAÇÃO (Slide 39) - MUST come before slide.type === 'capa' check
   if (slide.id === 39) {
     return (
-      <div className="flex flex-col h-full relative px-6 md:px-16 lg:px-24 items-center justify-center text-center overflow-hidden">
+      <div key={slide.id} className="flex flex-col h-full relative px-6 md:px-16 lg:px-24 items-center justify-center text-center overflow-hidden isolate">
         {/* Background Effects */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-purple-600/20 rounded-full blur-[120px] opacity-60" />
@@ -740,7 +740,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
           {/* Logo with Glow */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative"
           >
@@ -752,35 +752,33 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
             />
           </motion.div>
 
-          {/* Closing Message */}
-          <div className="space-y-6">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-2xl lg:text-4xl text-zinc-300 font-display font-light"
-            >
-              Bom, é isso.
-            </motion.p>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-[clamp(2.5rem,6vw,5rem)] font-display font-black uppercase leading-[0.9] text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 tracking-tighter"
-            >
-              VAMOS JUNTOS <br /><span className="text-purple-500">ATÉ O FINAL.</span>
-            </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="text-xl lg:text-2xl text-zinc-400 font-mono uppercase tracking-[0.2em] pt-4"
-            >
-              Ninguém fica pra trás!
-            </motion.p>
-          </div>
+          {/* Typewriter Text */}
+          <motion.h2
+            initial="hidden"
+            animate="visible"
+            variants={{
+              visible: { transition: { staggerChildren: 0.08, delayChildren: 0.5 } }
+            }}
+            className="text-2xl lg:text-4xl text-white font-medium tracking-wide leading-relaxed max-w-3xl font-sans"
+          >
+            {Array.from("Vamos juntos até o final. Ninguém fica para trás.").map((char, i) => (
+              <motion.span
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, display: "none" },
+                  visible: { opacity: 1, display: "inline" }
+                }}
+                transition={{ duration: 0 }}
+              >
+                {char}
+              </motion.span>
+            ))}
+            <motion.span
+              animate={{ opacity: [0, 1, 0] }}
+              transition={{ duration: 0.8, repeat: Infinity, ease: "steps(2)" }}
+              className="inline-block w-[3px] h-[1.2em] bg-white ml-1 align-middle shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+            />
+          </motion.h2>
         </div>
       </div>
     );
