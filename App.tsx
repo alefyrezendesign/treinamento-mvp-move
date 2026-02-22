@@ -82,7 +82,7 @@ const App: React.FC = () => {
   return (
     <div
       ref={appRef}
-      className="fixed inset-0 bg-[#050505] text-white overflow-hidden flex flex-col font-sans h-[100dvh]"
+      className="fixed inset-0 bg-[#050505] text-white overflow-hidden flex flex-col font-sans h-dvh"
     >
       <AnimatePresence mode="wait">
         {!state.hasStarted ? (
@@ -102,9 +102,9 @@ const App: React.FC = () => {
             className="flex-1 flex flex-col relative overflow-hidden h-full"
           >
             {/* Elementos de Fundo */}
-            <div className="absolute inset-0 pointer-events-none -z-10">
-              <div className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] glow-purple opacity-40 rounded-full blur-[120px]" />
-              <div className="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-indigo-900/10 rounded-full blur-[100px]" />
+            <div className="absolute inset-0 pointer-events-none -z-10 bg-[#050505]">
+              <div className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full" style={{ background: 'radial-gradient(circle, rgba(147, 51, 234, 0.08) 0%, transparent 70%)' }} />
+              <div className="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full" style={{ background: 'radial-gradient(circle, rgba(49, 46, 129, 0.1) 0%, transparent 70%)' }} />
             </div>
 
             {/* Header */}
@@ -124,7 +124,7 @@ const App: React.FC = () => {
                 <button onClick={() => setState(prev => ({ ...prev, hasStarted: false }))} className="p-2.5 text-zinc-500 hover:text-white transition-colors">
                   <Home size={20} />
                 </button>
-                <div className="h-8 w-[1px] bg-white/10 mx-2" />
+                <div className="h-8 w-px bg-white/10 mx-2" />
                 <div className="font-display text-xl text-purple-500">
                   {String(state.currentSlideIndex + 1).padStart(2, '0')}
                   <span className="text-zinc-800 mx-1">/</span>
@@ -177,10 +177,10 @@ const App: React.FC = () => {
             </footer>
 
             {/* Navigation - Guaranteed Fixed & Subtle */}
-            <nav className="fixed bottom-6 right-6 md:bottom-12 md:right-12 flex items-center gap-1 z-[100]">
+            <nav className="fixed bottom-6 right-6 md:bottom-12 md:right-12 flex items-center gap-1 z-100">
               <button
                 onClick={goToPrev}
-                className="p-3 md:p-4 rounded-xl bg-white/[0.01] hover:bg-white/[0.08] backdrop-blur-md border border-white/[0.05] text-zinc-600 hover:text-white transition-all shadow-xl active:scale-95"
+                className="p-3 md:p-4 rounded-xl bg-white/1 hover:bg-white/8 backdrop-blur-md border border-white/5 text-zinc-600 hover:text-white transition-all shadow-xl active:scale-95"
                 aria-label="Anterior"
               >
                 <ChevronLeft size={18} />
@@ -188,7 +188,7 @@ const App: React.FC = () => {
               <button
                 onClick={goToNext}
                 disabled={state.currentSlideIndex === slides.length - 1}
-                className="p-3 md:p-4 rounded-xl bg-white/[0.02] hover:bg-white/[0.1] backdrop-blur-md border border-white/[0.08] text-zinc-500 hover:text-white disabled:opacity-0 transition-all shadow-xl active:scale-95"
+                className="p-3 md:p-4 rounded-xl bg-white/2 hover:bg-white/10 backdrop-blur-md border border-white/8 text-zinc-500 hover:text-white disabled:opacity-0 transition-all shadow-xl active:scale-95"
                 aria-label="Próximo"
               >
                 <ChevronRight size={18} />

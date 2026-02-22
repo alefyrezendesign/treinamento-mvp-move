@@ -521,6 +521,6 @@ export const INITIAL_SLIDES: Slide[] = [
     id: 39,
     title: "Finalização",
     type: 'capa',
-    subtitle: "Bom é isso!\nVamos juntos até o final. Ninguém fica para trás.",
+    subtitle: "Bom é isso!\nVamos juntos até o final.\nNinguém fica para trás.",
   }
 ];

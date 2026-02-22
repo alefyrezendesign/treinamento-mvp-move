@@ -92,7 +92,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
 
             <h2 className="text-[clamp(2.5rem,10vw,8rem)] font-display leading-[0.85] text-white uppercase tracking-tighter mb-6 lg:mb-10">
               PILARES<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-white">DO MOVE</span>
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-white">DO MOVE</span>
             </h2>
 
             <div className="space-y-6 lg:space-y-8">
@@ -113,7 +113,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.5, duration: 0.8 }}
-                className="pl-4 lg:pl-6 border-l-4 border-purple-500 bg-gradient-to-r from-purple-500/10 to-transparent py-3 lg:py-4 rounded-r-2xl"
+                className="pl-4 lg:pl-6 border-l-4 border-purple-500 bg-linear-to-r from-purple-500/10 to-transparent py-3 lg:py-4 rounded-r-2xl"
               >
                 <p className="text-xl lg:text-4xl text-white font-display uppercase tracking-tight font-bold leading-tight shadow-black drop-shadow-lg">
                   Se estão firmes, o MOVE cumpre seu objetivo.
@@ -133,7 +133,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
               transition={{ duration: 0.8, delay: 0.2 }}
               className="w-48 h-12 bg-zinc-800 rounded-sm border-t border-white/10 relative z-20 shadow-2xl"
             >
-              <div className="absolute inset-x-0 top-0 h-[1px] bg-white/20" />
+              <div className="absolute inset-x-0 top-0 h-px bg-white/20" />
             </motion.div>
 
             {/* Shaft (The scrolling/growing part) */}
@@ -141,7 +141,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "100%", opacity: 1 }}
               transition={{ duration: 1.5, delay: 0.8, ease: "easeInOut" }}
-              className="w-32 flex-1 bg-gradient-to-b from-zinc-800 to-zinc-900 mx-auto relative overflow-hidden border-x border-white/5"
+              className="w-32 flex-1 bg-linear-to-b from-zinc-800 to-zinc-900 mx-auto relative overflow-hidden border-x border-white/5"
             >
               {/* Grooves */}
               <div className="absolute inset-0 flex justify-between px-4 opacity-30">
@@ -162,7 +162,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 2, type: "spring" }}
-              className="w-56 h-16 bg-gradient-to-br from-zinc-700 to-zinc-800 rounded-sm border border-white/10 shadow-[0_0_50px_rgba(147,51,234,0.3)] relative z-30 mb-[-1px] flex items-center justify-center"
+              className="w-56 h-16 bg-linear-to-br from-zinc-700 to-zinc-800 rounded-sm border border-white/10 shadow-[0_0_50px_rgba(147,51,234,0.3)] relative z-30 -mb-px flex items-center justify-center"
             >
               <Landmark size={32} className="text-purple-400 opacity-80" />
               <div className="absolute inset-x-0 bottom-0 h-[2px] bg-purple-500/50" />
@@ -204,11 +204,11 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
             </span>
           </div>
           <div className="flex items-center gap-4 lg:gap-6">
-            <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
+            <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-linear-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
               <PillarIcon size={24} className="text-white lg:scale-125" />
             </div>
             <div>
-              <h2 className="text-[clamp(1.8rem,5vw,4.5rem)] font-display leading-[0.9] text-white uppercase tracking-tighter break-words">
+              <h2 className="text-[clamp(1.8rem,5vw,4.5rem)] font-display leading-[0.9] text-white uppercase tracking-tighter wrap-break-word">
                 {slide.title}
               </h2>
               <p className="text-sm lg:text-xl text-zinc-400 font-medium tracking-tight mt-2 max-w-2xl text-balance">
@@ -248,7 +248,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
           </div>
 
           {/* Right Column: Measurement (Termômetro) */}
-          <div className="bg-gradient-to-br from-indigo-900/20 to-purple-900/10 border border-indigo-500/20 rounded-[2.5rem] p-5 md:p-8 lg:p-10 backdrop-blur-sm flex flex-col relative overflow-hidden group">
+          <div className="bg-linear-to-br from-indigo-900/20 to-purple-900/10 border border-indigo-500/20 rounded-[2.5rem] p-5 md:p-8 lg:p-10 backdrop-blur-sm flex flex-col relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
               <Activity size={100} />
             </div>
@@ -341,7 +341,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                     bounce: 0.2
                   }}
                   className={`
-                        w-12 lg:w-20 bg-gradient-to-t from-zinc-800 to-zinc-700 
+                        w-12 lg:w-20 bg-linear-to-t from-zinc-800 to-zinc-700 
                         rounded-sm border-t border-white/20 shadow-2xl relative cursor-pointer
                         ${isTrigger ? 'z-30 hover:bg-zinc-600' : 'z-20'}
                         origin-bottom-right
@@ -386,8 +386,8 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                   transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
                   className="flex flex-col items-center gap-2 mt-4"
                 >
-                  <div className="w-[2px] h-8 bg-gradient-to-t from-transparent to-purple-500" />
-                  <ArrowRight className="text-purple-400 rotate-[-90deg]" size={24} />
+                  <div className="w-[2px] h-8 bg-linear-to-t from-transparent to-purple-500" />
+                  <ArrowRight className="text-purple-400 -rotate-90" size={24} />
                 </motion.div>
               </motion.div>
             )}
@@ -420,13 +420,13 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
 
           {/* Typography - Main Title */}
           <h2 className="flex flex-col items-center leading-[0.8]">
-            <span className="text-[clamp(3.5rem,12vw,9rem)] font-display font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500 tracking-tighter">
+            <span className="text-[clamp(3.5rem,12vw,9rem)] font-display font-black text-transparent bg-clip-text bg-linear-to-b from-white to-zinc-500 tracking-tighter">
               LÍDERES
             </span>
             <span className="text-[clamp(1.5rem,4vw,3rem)] font-display text-purple-500 italic tracking-widest my-2 lg:my-4">
               &
             </span>
-            <span className="text-[clamp(3.5rem,12vw,9rem)] font-display font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500 tracking-tighter">
+            <span className="text-[clamp(3.5rem,12vw,9rem)] font-display font-black text-transparent bg-clip-text bg-linear-to-b from-white to-zinc-500 tracking-tighter">
               ANFITRIÕES
             </span>
           </h2>
@@ -438,7 +438,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
             transition={{ delay: 0.8 }}
             className="mt-12 flex flex-col items-center gap-4"
           >
-            <div className="w-12 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
+            <div className="w-12 h-[2px] bg-linear-to-r from-transparent via-purple-500 to-transparent" />
             <p className="text-xl lg:text-3xl text-zinc-400 font-roboto font-medium tracking-tight text-center max-w-2xl px-4">
               {slide.subtitle}
             </p>
@@ -710,7 +710,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                       <div className="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono font-bold uppercase tracking-wider group-hover:bg-purple-500 group-hover:text-white transition-colors">
                         {item.time}
                       </div>
-                      <div className="h-[1px] flex-1 bg-zinc-800 group-hover:bg-purple-500/30 transition-colors" />
+                      <div className="h-px flex-1 bg-zinc-800 group-hover:bg-purple-500/30 transition-colors" />
                     </div>
 
                     <p className="text-xl text-zinc-100 font-display font-bold uppercase leading-tight tracking-tight">
@@ -733,7 +733,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
         {/* Background Effects */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-purple-600/20 rounded-full blur-[120px] opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black" />
+          <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-black" />
         </div>
 
         <div className="relative z-10 flex flex-col items-center gap-12 max-w-4xl">
@@ -872,7 +872,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                 className="relative"
               >
                 <div className="absolute -inset-10 bg-purple-600/20 blur-[60px] rounded-full animate-pulse" />
-                <h2 className="text-[clamp(3rem,8vw,7rem)] font-display leading-none text-transparent bg-clip-text bg-gradient-to-br from-white to-purple-200 uppercase tracking-tighter relative z-10 text-center">
+                <h2 className="text-[clamp(3rem,8vw,7rem)] font-display leading-none text-transparent bg-clip-text bg-linear-to-br from-white to-purple-200 uppercase tracking-tighter relative z-10 text-center">
                   {Array.from("O QUE É").map((char, i) => (
                     <motion.span
                       key={`line1-${i}`}
@@ -932,7 +932,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: i * 0.2 + 0.3, type: "spring", stiffness: 50 }}
                     className={`
-                        p-6 lg:p-10 rounded-[2rem] border relative overflow-hidden
+                        p-6 lg:p-10 rounded-4xl border relative overflow-hidden
                         ${i === 0
                         ? 'bg-purple-600 border-purple-500 shadow-[0_20px_60px_rgba(147,51,234,0.2)]'
                         : 'bg-zinc-900/50 border-white/5 hover:bg-zinc-900 transition-colors'}
@@ -997,7 +997,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
               initial={{ width: 0 }}
               whileInView={{ width: "100%" }}
               transition={{ duration: 1, delay: 0.3 }}
-              className="w-full max-w-lg h-[1px] bg-gradient-to-r from-transparent via-purple-500/50 to-transparent mb-8"
+              className="w-full max-w-lg h-px bg-linear-to-r from-transparent via-purple-500/50 to-transparent mb-8"
             />
 
             <h2 className="flex flex-col items-center text-white uppercase tracking-tighter relative z-10">
@@ -1007,7 +1007,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="text-[clamp(3.5rem,8vw,8rem)] font-display leading-none mb-4"
               >
-                O <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-300 to-purple-600 filter drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]">MOVE</span>
+                O <span className="text-transparent bg-clip-text bg-linear-to-b from-purple-300 to-purple-600 filter drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]">MOVE</span>
               </motion.div>
 
               <motion.span
@@ -1078,7 +1078,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`p-5 lg:p-6 rounded-[2rem] border ${card.border} ${card.bg} flex flex-col items-start gap-3 hover:scale-105 transition-transform`}
+              className={`p-5 lg:p-6 rounded-4xl border ${card.border} ${card.bg} flex flex-col items-start gap-3 hover:scale-105 transition-transform`}
             >
               <card.icon className={card.color} size={28} />
               <span className={`text-base lg:text-xl font-bold uppercase leading-tight ${card.color}`}>
@@ -1100,7 +1100,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                 <Sparkles size={16} className="text-purple-200" />
                 <h4 className="text-white/40 text-[10px] font-black uppercase tracking-[0.4em]">NOTA DE LIDERANÇA</h4>
               </div>
-              <p className="text-white font-display text-xl lg:text-2xl leading-[1] uppercase italic tracking-tighter relative z-10">
+              <p className="text-white font-display text-xl lg:text-2xl leading-none uppercase italic tracking-tighter relative z-10">
                 {slide.callout}
               </p>
             </motion.div>
@@ -1141,7 +1141,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
             transition={{ duration: 0.8 }}
             className="flex flex-col items-center gap-4 lg:gap-6 group"
           >
-            <div className="w-24 h-24 lg:w-48 lg:h-48 rounded-full bg-gradient-to-br from-zinc-800 to-black border border-zinc-700 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500 relative z-10">
+            <div className="w-24 h-24 lg:w-48 lg:h-48 rounded-full bg-linear-to-br from-zinc-800 to-black border border-zinc-700 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500 relative z-10">
               <Landmark size={40} className="text-zinc-300 lg:w-24 lg:h-24" strokeWidth={1} />
             </div>
             <h3 className="text-3xl lg:text-6xl font-display text-zinc-500 uppercase tracking-tight group-hover:text-white transition-colors">
@@ -1170,7 +1170,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
             transition={{ duration: 0.8 }}
             className="flex flex-col items-center gap-4 lg:gap-6 group"
           >
-            <div className="w-24 h-24 lg:w-48 lg:h-48 rounded-full bg-gradient-to-br from-zinc-800 to-black border border-zinc-700 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500 relative z-10">
+            <div className="w-24 h-24 lg:w-48 lg:h-48 rounded-full bg-linear-to-br from-zinc-800 to-black border border-zinc-700 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500 relative z-10">
               <Home size={40} className="text-zinc-300 lg:w-24 lg:h-24" strokeWidth={1} />
             </div>
             <h3 className="text-3xl lg:text-6xl font-display text-zinc-500 uppercase tracking-tight group-hover:text-white transition-colors">
@@ -1267,7 +1267,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className={`p-5 lg:p-8 rounded-[2rem] bg-zinc-900/50 border border-white/5 hover:bg-zinc-800 transition-colors group ${isLast ? 'md:col-span-2 lg:col-span-1' : ''}`}
+                className={`p-5 lg:p-8 rounded-4xl bg-zinc-900/50 border border-white/5 hover:bg-zinc-800 transition-colors group ${isLast ? 'md:col-span-2 lg:col-span-1' : ''}`}
               >
                 <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-purple-500/10 flex items-center justify-center mb-4 lg:mb-6 group-hover:scale-110 transition-transform">
                   <Icon className="text-purple-400 group-hover:text-purple-300" size={20} />
@@ -1325,7 +1325,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className={`flex items-start gap-4 lg:gap-6 p-5 lg:p-8 rounded-[2rem] bg-zinc-900/50 border border-green-500/20 hover:border-green-500/50 hover:bg-zinc-800 transition-all group ${isLast ? 'md:col-span-2 lg:col-span-1' : ''}`}
+                className={`flex items-start gap-4 lg:gap-6 p-5 lg:p-8 rounded-4xl bg-zinc-900/50 border border-green-500/20 hover:border-green-500/50 hover:bg-zinc-800 transition-all group ${isLast ? 'md:col-span-2 lg:col-span-1' : ''}`}
               >
                 <div className="min-w-10 h-10 lg:min-w-12 lg:h-12 rounded-full bg-green-500/10 flex items-center justify-center group-hover:scale-110 transition-transform mt-1">
                   <Icon className="text-green-500" size={20} />
@@ -1381,7 +1381,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className="p-5 lg:p-8 rounded-[2rem] bg-red-950/10 border border-red-900/30 hover:bg-red-900/20 transition-colors group flex items-start gap-4"
+                className="p-5 lg:p-8 rounded-4xl bg-red-950/10 border border-red-900/30 hover:bg-red-900/20 transition-colors group flex items-start gap-4"
               >
                 <div className="min-w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center mt-1 group-hover:scale-110 transition-transform">
                   <Icon className="text-red-500/80 group-hover:text-red-500" size={20} />
@@ -1402,7 +1402,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
     return (
       <div key={slide.id} className="relative w-full h-full flex items-center justify-center overflow-hidden px-6 md:px-16 lg:px-24">
         {/* Background Visuals */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-950" />
+        <div className="absolute inset-0 bg-linear-to-br from-purple-900 via-indigo-900 to-purple-950" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.2),transparent_70%)]" />
 
         <div className="relative z-10 text-center px-8 flex flex-col items-center gap-8 lg:gap-12 max-w-5xl">
@@ -1422,7 +1422,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 1 }}
           >
-            <div className="h-[2px] w-24 bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
+            <div className="h-[2px] w-24 bg-linear-to-r from-transparent via-purple-500 to-transparent" />
           </motion.div>
         </div>
       </div>
@@ -1529,7 +1529,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                     <>
                       Multiplicação não é <span className="text-zinc-500 line-through decoration-purple-500/50">dividir amigos</span>.
                       <br />
-                      É <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400 font-bold">proteger o cuidado</span> e abrir espaço.
+                      É <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-indigo-400 font-bold">proteger o cuidado</span> e abrir espaço.
                     </>
                   ) : null
                 ))}
@@ -1553,7 +1553,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                 {i === 0 ? <Users size={120} /> : <Leaf size={120} />}
               </div>
 
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-indigo-500/10 flex items-center justify-center shrink-0 border border-white/10 group-hover:border-purple-500/50 transition-colors">
+              <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-purple-500/20 to-indigo-500/10 flex items-center justify-center shrink-0 border border-white/10 group-hover:border-purple-500/50 transition-colors">
                 {i === 0 ? <Users size={32} className="text-purple-400" /> : <HeartHandshake size={32} className="text-indigo-400" />}
               </div>
 
@@ -1690,7 +1690,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
         {/* Background Effects */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-purple-600/20 rounded-full blur-[120px] opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black" />
+          <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-black" />
         </div>
 
         <div className="relative z-10 flex flex-col items-center gap-12 max-w-4xl">
@@ -1829,7 +1829,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                       <motion.div
                         key={i}
                         variants={itemVariants}
-                        className="p-8 rounded-[2rem] bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors shadow-xl"
+                        className="p-8 rounded-4xl bg-white/3 border border-white/10 hover:bg-white/5 transition-colors shadow-xl"
                       >
                         <p className="text-lg text-zinc-300 font-roboto font-light leading-relaxed">
                           "{point}"
@@ -1850,7 +1850,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                           <Sparkles size={16} className="text-purple-200" />
                           <h4 className="text-white/40 text-[10px] font-black uppercase tracking-[0.4em]">NOTA DE LIDERANÇA</h4>
                         </div>
-                        <p className="text-white font-display text-2xl lg:text-[3vh] leading-[1] uppercase italic tracking-tighter relative z-10 content-edit">
+                        <p className="text-white font-display text-2xl lg:text-[3vh] leading-none uppercase italic tracking-tighter relative z-10 content-edit">
                           {slide.callout}
                         </p>
                       </motion.div>
@@ -1862,7 +1862,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                 /* Slide 34: Acompanhamento Semanal (Custom Visual Layout) */
                 <div className="w-full h-full flex flex-col pt-0 lg:pt-8">
                   {/* Background Effects */}
-                  <div className="absolute inset-0 -z-10 bg-gradient-to-br from-purple-900/20 via-black to-black opacity-80" />
+                  <div className="absolute inset-0 -z-10 bg-linear-to-br from-purple-900/20 via-black to-black opacity-80" />
                   <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-purple-600/10 rounded-full blur-[120px] -z-10" />
 
                   <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 content-center overflow-y-auto lg:overflow-visible pb-12 pt-12">
@@ -2049,7 +2049,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                 // Definir cores dinamicamente (Padrão vs Regras de Ouro)
                 const isGold = slide.id === 33;
                 const cardBorder = isGold ? "border-amber-500/20 hover:border-amber-500/50" : "border-white/[0.04] hover:border-purple-600/30";
-                const cardBg = isGold ? "bg-amber-900/10 hover:bg-amber-900/20" : "bg-white/[0.02] hover:bg-white/[0.05]";
+                const cardBg = isGold ? "bg-amber-900/10 hover:bg-amber-900/20" : "bg-white/2 hover:bg-white/5";
                 const iconBg = isGold ? "bg-amber-500/10 border-amber-500/20" : "bg-purple-900/10 border-purple-500/10";
                 const iconColor = isGold ? "text-amber-500" : "text-purple-500";
                 const textColor = isGold ? "text-amber-100" : "text-zinc-200";
@@ -2087,7 +2087,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                   <Sparkles size={16} className="text-purple-200" />
                   <h4 className="text-white/40 text-[10px] font-black uppercase tracking-[0.4em]">NOTA DE LIDERANÇA</h4>
                 </div>
-                <p className="text-white font-display text-2xl lg:text-[3.5vh] leading-[1] uppercase italic tracking-tighter relative z-10">
+                <p className="text-white font-display text-2xl lg:text-[3.5vh] leading-none uppercase italic tracking-tighter relative z-10">
                   {slide.callout}
                 </p>
               </motion.div>

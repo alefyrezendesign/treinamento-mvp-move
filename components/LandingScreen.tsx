@@ -108,7 +108,7 @@ const LandingScreen: React.FC<LandingScreenProps> = ({ onStart, headline, isEdit
             opacity: [0.05, 0.1, 0.05]
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] rounded-full blur-[150px]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] rounded-full"
           style={{
             background: 'radial-gradient(circle, #2e1065 0%, transparent 70%)'
           }}
@@ -129,7 +129,7 @@ const LandingScreen: React.FC<LandingScreenProps> = ({ onStart, headline, isEdit
         {/* Church Name Label */}
         <motion.div
           animate={isExiting ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }}
-          className="flex items-center gap-3 px-6 py-2 rounded-full bg-white/[0.02] border border-white/5 backdrop-blur-md mb-8"
+          className="flex items-center gap-3 px-6 py-2 rounded-full bg-white/2 border border-white/5 backdrop-blur-md mb-8"
         >
           <span className="text-xs md:text-sm font-black tracking-[0.5em] uppercase text-zinc-400">Ministério Visão e Propósito</span>
         </motion.div>
@@ -171,7 +171,7 @@ const LandingScreen: React.FC<LandingScreenProps> = ({ onStart, headline, isEdit
           <Play className="text-purple-200 group-hover:text-white group-hover:scale-110 transition-all relative z-10" size={24} fill="currentColor" />
 
           {/* Subtle reflection/glass effect */}
-          <div className="absolute inset-x-0 top-0 h-[50%] bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
+          <div className="absolute inset-x-0 top-0 h-[50%] bg-linear-to-b from-white/10 to-transparent pointer-events-none" />
         </motion.button>
       </div>
 
@@ -186,7 +186,7 @@ const LandingScreen: React.FC<LandingScreenProps> = ({ onStart, headline, isEdit
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/95 backdrop-blur-3xl"
+            className="fixed inset-0 z-100 flex items-center justify-center p-6 bg-black/95 backdrop-blur-lg"
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
