@@ -344,12 +344,19 @@ export const INITIAL_SLIDES: Slide[] = [
   },
   {
     id: 28,
+    title: "Mas quando a estrutura está alinhada...",
+    type: 'content', // Interactive alignment slide 
+    subtitle: "Toque em um pilar para testar a resistência.",
+    content: []
+  },
+  {
+    id: 29,
     title: "Líderes e Anfitriões",
     type: 'capa',
     subtitle: "O coração do serviço nas casas.",
   },
   {
-    id: 29,
+    id: 30,
     title: "Líder do MOVE",
     type: 'checklist',
     subtitle: "Responsabilidades",
@@ -382,7 +389,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 30,
+    id: 31,
     title: "Anfitrião",
     type: 'checklist',
     subtitle: "Responsabilidades e Postura",
@@ -409,7 +416,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 31,
+    id: 32,
     title: "Líder em treinamento",
     type: 'checklist',
     subtitle: "Responsabilidades e Postura",
@@ -432,7 +439,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 32,
+    id: 33,
     title: "Como ocorre o MOVE na prática",
     type: 'checklist',
     subtitle: "Roteiro e Regras de Ouro",
@@ -451,7 +458,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 33,
+    id: 34,
     title: "Regras de Ouro",
     type: 'checklist',
     subtitle: "Princípios inegociáveis do encontro",
@@ -466,7 +473,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 34,
+    id: 35,
     title: "Acompanhamento Semanal",
     type: 'content',
     content: [
@@ -479,13 +486,13 @@ export const INITIAL_SLIDES: Slide[] = [
     callout: "VOCÊ NÃO É UM LÍDER DE REUNIÃO. VOCÊ É UM PASTOR DE PESSOAS."
   },
   {
-    id: 35,
+    id: 36,
     title: "Saúde do MOVE",
     type: 'reflection',
     question: "A verdadeira medida de saúde do MOVE não é só casa cheia. É vida acompanhada."
   },
   {
-    id: 36,
+    id: 37,
     title: "Confidencialidade",
     type: 'content',
     content: [
@@ -497,7 +504,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 37,
+    id: 38,
     title: "Crescimento e multiplicação",
     type: 'content',
     content: [
@@ -507,7 +514,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 38,
+    id: 39,
     title: "Comunicação e Honra",
     type: 'checklist',
     checklist: [
@@ -518,7 +525,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 39,
+    id: 40,
     title: "Finalização",
     type: 'capa',
     subtitle: "Bom é isso!\nVamos juntos até o final.\nNinguém fica para trás.",

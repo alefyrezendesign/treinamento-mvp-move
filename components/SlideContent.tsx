@@ -396,8 +396,181 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
       </div>
     );
   }
-  // DESIGN ESPECIAL - LÍDERES E ANFITRIÕES (Slide 28)
+
+  // INTERATIVO - ESTRUTURA ALINHADA (Slide 28)
   if (slide.id === 28) {
+    const [activePillar, setActivePillar] = React.useState<number | null>(null);
+    const [showReflection, setShowReflection] = React.useState(false);
+
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden px-6 md:px-16 lg:px-24">
+        {/* Background Atmosphere - Calmer, bluer/purple */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-indigo-900/10 rounded-full blur-[100px]" />
+          <motion.div
+            animate={{ opacity: activePillar !== null ? 0.3 : 0 }}
+            className="absolute inset-0 bg-indigo-900/20 transition-opacity duration-1000"
+          />
+        </div>
+
+        {/* Content Container */}
+        <div className="relative z-10 flex flex-col items-center max-w-5xl w-full">
+          <header className="text-center mb-12 lg:mb-20 space-y-4">
+            <h2 className="text-[clamp(2.5rem,8vw,5.5rem)] font-display leading-[0.9] text-white uppercase tracking-tighter text-balance">
+              MAS QUANDO A ESTRUTURA ESTÁ ALINHADA...
+            </h2>
+            <p className="text-xl lg:text-3xl text-zinc-400 font-roboto font-medium tracking-tight">
+              Toque em um pilar para testar a resistência.
+            </p>
+          </header>
+
+          {/* Pillars Visual */}
+          <div className="flex items-end justify-center gap-2 lg:gap-4 h-[40vh] mb-12 lg:mb-20 px-4 relative w-full max-w-3xl">
+            {/* Energy Connections Container */}
+            <div className="absolute inset-x-0 bottom-[10%] h-1/2 pointer-events-none flex items-center justify-center">
+              <AnimatePresence>
+                {activePillar !== null && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    className="w-[85%] h-full flex items-center justify-center relative backdrop-blur-sm"
+                  >
+                    {/* Glowing ring/line connecting them */}
+                    <motion.div
+                      className="absolute inset-x-0 h-[2px] bg-linear-to-r from-transparent via-indigo-400 to-transparent shadow-[0_0_20px_rgba(129,140,248,0.8)]"
+                      animate={{ opacity: [0.3, 1, 0.3] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {[...Array(7)].map((_, i) => {
+              const isTarget = activePillar === i;
+              const hasActive = activePillar !== null;
+
+              // Base height variations
+              const baseHeight = 80 + (i % 2) * 10;
+
+              return (
+                <motion.div
+                  key={i}
+                  onClick={() => setActivePillar(isTarget ? null : i)}
+                  animate={{
+                    // Target pillar bends slightly (pressure) but DOES NOT fall
+                    rotate: isTarget ? 10 : (hasActive ? (i < activePillar ? -2 : 2) : 0),
+                    // Micro-movements from other pillars bracing the load
+                    y: isTarget ? 15 : (hasActive ? -5 : 0),
+                    backgroundColor: isTarget
+                      ? "rgba(63, 63, 70, 0.8)" // Slightly darker when under direct pressure
+                      : (hasActive ? "rgba(79, 70, 229, 0.2)" : "rgba(39, 39, 42, 1)") // Others light up with indigo energy
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    type: "spring",
+                    bounce: hasActive ? 0.4 : 0.2 // Bouncier when catching the load
+                  }}
+                  className={`
+                        w-12 lg:w-20 bg-linear-to-t from-zinc-800 to-zinc-700 
+                        rounded-sm border-t border-white/20 shadow-2xl relative cursor-pointer
+                        z-20 origin-bottom flex justify-center overflow-hidden
+                     `}
+                  style={{ height: `${baseHeight}%` }}
+                >
+                  {/* Energy Pulse Visual inside the pillar */}
+                  <AnimatePresence>
+                    {hasActive && (
+                      <motion.div
+                        initial={{ opacity: 0, y: "100%" }}
+                        animate={{
+                          opacity: [0, 0.5, 0],
+                          y: ["100%", "-20%"]
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          ease: "easeOut",
+                          delay: isTarget ? 0 : 0.2 + (Math.abs(i - activePillar) * 0.1) // Ripple out from target
+                        }}
+                        className="absolute inset-x-0 bottom-0 h-full bg-linear-to-t from-indigo-500/0 via-indigo-400/40 to-indigo-500/0"
+                      />
+                    )}
+                  </AnimatePresence>
+
+                  {/* Visual distinction for target pillar handling the pressure */}
+                  {isTarget && (
+                    <motion.div
+                      animate={{ opacity: [0.2, 0.8, 0.2] }}
+                      transition={{ duration: 0.5, repeat: Infinity }}
+                      className="absolute top-10 w-6 h-6 rounded-full bg-white/10 blur-md"
+                    />
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Response Message */}
+          <div className="h-24 flex items-center justify-center flex-col relative w-full max-w-2xl px-4">
+            <AnimatePresence mode="wait">
+              {activePillar !== null ? (
+                <motion.div
+                  key="active-message"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="text-center"
+                >
+                  <p className="text-xl lg:text-3xl text-white font-display uppercase tracking-tight font-bold mb-2">
+                    A estrutura permanece firme quando a carga é compartilhada.
+                  </p>
+                  <p className="text-sm lg:text-lg text-indigo-200/80 font-roboto">
+                    Quando todos os pilares funcionam juntos, a pressão não derruba — fortalece.
+                  </p>
+                </motion.div>
+              ) : (
+                <motion.div key="empty" className="h-full" />
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Reflection Button */}
+          <AnimatePresence>
+            {activePillar !== null && !showReflection && (
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ delay: 1 }} // Appear slightly after message
+                onClick={() => setShowReflection(true)}
+                className="mt-8 px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-400 hover:text-white text-xs font-bold uppercase tracking-widest rounded-full transition-all"
+              >
+                RELEVANTE
+              </motion.button>
+            )}
+
+            {showReflection && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="mt-8 p-6 lg:p-8 bg-indigo-900/20 border border-indigo-500/30 rounded-3xl backdrop-blur-md max-w-xl text-center relative overflow-hidden group"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl -mr-10 -mt-10" />
+                <Quote className="text-indigo-400 mb-4 mx-auto opacity-50" size={32} />
+                <p className="text-lg lg:text-xl text-indigo-100 font-roboto font-light leading-relaxed italic relative z-10">
+                  "Um sistema saudável não depende de um único ponto forte. A estabilidade vem do funcionamento conjunto."
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+        </div>
+      </div>
+    );
+  }
+  // DESIGN ESPECIAL - LÍDERES E ANFITRIÕES (Slide 29)
+  if (slide.id === 29) {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden bg-black px-6 md:px-16 lg:px-24">
 
@@ -447,8 +620,8 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
       </div>
     );
   }
-  // DESIGN LÍDER DO MOVE (Slide 29 - Três Seções)
-  if (slide.id === 29) {
+  // DESIGN LÍDER DO MOVE (Slide 30 - Três Seções)
+  if (slide.id === 30) {
     const checklistItems = slide.checklist || [];
     const expectations = slide.expectations || [];
     const commitments = slide.commitments || [];
@@ -544,8 +717,8 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
       </div>
     );
   }
-  // DESIGN ANFITRIÃO E LÍDER EM TREINAMENTO (Slide 30 e 31 - Duas Seções)
-  if (slide.id === 30 || slide.id === 31) {
+  // DESIGN ANFITRIÃO E LÍDER EM TREINAMENTO (Slide 31 e 32 - Duas Seções)
+  if (slide.id === 31 || slide.id === 32) {
     const checklistItems = slide.checklist || [];
     const posture = slide.posture || [];
 
@@ -620,8 +793,8 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
     );
   }
 
-  // DESIGN MOVE NA PRÁTICA - ROTEIRO (Slide 32)
-  if (slide.id === 32) {
+  // DESIGN MOVE NA PRÁTICA - ROTEIRO (Slide 33)
+  if (slide.id === 33) {
     const timeline = slide.timeline || [];
 
     // Header Padrão Refatorado para Slide 32
@@ -726,8 +899,8 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
     );
   }
 
-  // DESIGN FINALIZAÇÃO (Slide 39) - MUST come before slide.type === 'capa' check
-  if (slide.id === 39) {
+  // DESIGN FINALIZAÇÃO (Slide 40) - MUST come before slide.type === 'capa' check
+  if (slide.id === 40) {
     return (
       <div key={slide.id} className="flex flex-col h-full relative px-6 md:px-16 lg:px-24 items-center justify-center text-center overflow-hidden isolate">
         {/* Background Effects */}
