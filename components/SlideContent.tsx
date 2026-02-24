@@ -461,7 +461,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                   transition={{ type: "spring", bounce: 0.5, duration: 0.5 }}
                   onClick={handleRestart}
                   title="Recomeçar"
-                  className="absolute -right-2 lg:-right-8 bottom-[4.5rem] z-50 w-9 h-9 rounded-full bg-zinc-800/80 border border-purple-500/40 hover:bg-zinc-700 hover:border-purple-400 text-purple-300 hover:text-white flex items-center justify-center shadow-lg transition-all active:scale-90"
+                  className="absolute -right-2 lg:-right-8 bottom-18 z-50 w-9 h-9 rounded-full bg-zinc-800/80 border border-purple-500/40 hover:bg-zinc-700 hover:border-purple-400 text-purple-300 hover:text-white flex items-center justify-center shadow-lg transition-all active:scale-90"
                 >
                   <RotateCcw size={16} />
                 </motion.button>
@@ -482,7 +482,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                       ease: "easeInOut",
                       delay: 0.1
                     }}
-                    className="absolute inset-x-[5%] bottom-[4rem] lg:bottom-[6rem] h-[2px] bg-purple-300 origin-center z-10 shadow-[0_0_15px_rgba(192,132,252,0.8)] rounded-full"
+                    className="absolute inset-x-[5%] bottom-16 lg:bottom-24 h-[2px] bg-purple-300 origin-center z-10 shadow-[0_0_15px_rgba(192,132,252,0.8)] rounded-full"
                   />
                 )}
               </AnimatePresence>
@@ -493,7 +493,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                   initial={{ scaleX: 0, opacity: 0 }}
                   animate={{ scaleX: 1, opacity: 1 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="absolute inset-x-[5%] bottom-[4rem] lg:bottom-[6rem] h-[2px] bg-purple-400 origin-center z-10 shadow-[0_0_20px_rgba(192,132,252,1)] rounded-full"
+                  className="absolute inset-x-[5%] bottom-16 lg:bottom-24 h-[2px] bg-purple-400 origin-center z-10 shadow-[0_0_20px_rgba(192,132,252,1)] rounded-full"
                 />
               )}
 
