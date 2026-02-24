@@ -1,7 +1,7 @@
 
 import React, { useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, HelpCircle, Quote, Sparkles, ArrowRight, Dna, MapPin, Activity, Home, BookOpen, Flame, ArrowUpRight, Heart, Users, TrendingUp, Zap, Globe, Crown, MousePointerClick, AlertCircle, UserX, UserMinus, TrendingDown, Landmark, Scale, ShieldAlert, Stethoscope, HeartHandshake, Lightbulb, XCircle, Speaker, Lock, Coffee, Tent, MicOff, Plus, Eye, Network, UserPlus, Award, Clock, Smile, Star, Circle, MessageSquare, PartyPopper, User, ChevronRight, ChevronLeft, Leaf } from 'lucide-react';
+import { CheckCircle, HelpCircle, Quote, Sparkles, ArrowRight, Dna, MapPin, Activity, Home, BookOpen, Flame, ArrowUpRight, Heart, Users, TrendingUp, Zap, Globe, Crown, MousePointerClick, AlertCircle, UserX, UserMinus, TrendingDown, Landmark, Scale, ShieldAlert, Stethoscope, HeartHandshake, Lightbulb, XCircle, Speaker, Lock, Coffee, Tent, MicOff, Plus, Eye, Network, UserPlus, Award, Clock, Smile, Star, Circle, MessageSquare, PartyPopper, User, ChevronRight, ChevronLeft, Leaf, RotateCcw } from 'lucide-react';
 import { Slide } from '../types';
 
 interface SlideContentProps {
@@ -398,18 +398,42 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
   }
 
   // INTERATIVO - ESTRUTURA ALINHADA (Slide 28)
+  // INTERATIVO - ESTRUTURA ALINHADA (Slide 28)
   if (slide.id === 28) {
-    const [activePillar, setActivePillar] = React.useState<number | null>(null);
+    // shakeEvent: todos os pilares tremem (não há target específico)
+    const [shakeEvent, setShakeEvent] = React.useState<number | null>(null);
     const [showReflection, setShowReflection] = React.useState(false);
+    // fortifiedWiggle: após fortalecer, só o pilar clicado mexe levemente
+    const [fortifiedWiggle, setFortifiedWiggle] = React.useState<{ index: number; id: number } | null>(null);
+
+    const handlePillarClick = (idx: number) => {
+      if (showReflection) {
+        // Fortalecido: wiggle mínimo só neste pilar, sem resetar estado
+        setFortifiedWiggle({ index: idx, id: Date.now() });
+      } else {
+        // Não fortalecido: TODOS os pilares tremem
+        setShakeEvent(Date.now());
+      }
+    };
+
+    const handleElevarClick = () => {
+      setShowReflection(true);
+    };
+
+    const handleRestart = () => {
+      setShowReflection(false);
+      setShakeEvent(null);
+      setFortifiedWiggle(null);
+    };
 
     return (
       <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden px-6 md:px-16 lg:px-24">
-        {/* Background Atmosphere - Calmer, bluer/purple */}
+        {/* Background Atmosphere */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-indigo-900/10 rounded-full blur-[100px]" />
+          <div className="absolute top-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-purple-900/10 rounded-full blur-[100px]" />
           <motion.div
-            animate={{ opacity: activePillar !== null ? 0.3 : 0 }}
-            className="absolute inset-0 bg-indigo-900/20 transition-opacity duration-1000"
+            animate={{ opacity: shakeEvent !== null || showReflection ? 0.3 : 0 }}
+            className="absolute inset-0 bg-purple-900/20 transition-opacity duration-1000"
           />
         </div>
 
@@ -424,109 +448,162 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
             </p>
           </header>
 
-          {/* Pillars Visual */}
-          <div className="flex items-end justify-center gap-2 lg:gap-4 h-[40vh] mb-12 lg:mb-20 px-4 relative w-full max-w-3xl">
-            {/* Energy Connections Container */}
-            <div className="absolute inset-x-0 bottom-[10%] h-1/2 pointer-events-none flex items-center justify-center">
+          {/* Pillars Visual + Restart Button */}
+          <div className="relative w-full max-w-3xl flex items-end justify-center">
+            {/* Botão de reiniciar (aparece quando fortalecido) */}
+            <AnimatePresence>
+              {showReflection && (
+                <motion.button
+                  key="restart-btn"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.5 }}
+                  transition={{ type: "spring", bounce: 0.5, duration: 0.5 }}
+                  onClick={handleRestart}
+                  title="Recomeçar"
+                  className="absolute -right-2 lg:-right-8 bottom-[4.5rem] z-50 w-9 h-9 rounded-full bg-zinc-800/80 border border-purple-500/40 hover:bg-zinc-700 hover:border-purple-400 text-purple-300 hover:text-white flex items-center justify-center shadow-lg transition-all active:scale-90"
+                >
+                  <RotateCcw size={16} />
+                </motion.button>
+              )}
+            </AnimatePresence>
+
+            <div className="flex items-end justify-center gap-3 lg:gap-5 h-[40vh] mb-12 lg:mb-20 px-4 relative w-full">
+              {/* Linha de Sustentação Coletiva - Temporária quando testando */}
               <AnimatePresence>
-                {activePillar !== null && (
+                {shakeEvent !== null && !showReflection && (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    className="w-[85%] h-full flex items-center justify-center relative backdrop-blur-sm"
-                  >
-                    {/* Glowing ring/line connecting them */}
-                    <motion.div
-                      className="absolute inset-x-0 h-[2px] bg-linear-to-r from-transparent via-indigo-400 to-transparent shadow-[0_0_20px_rgba(129,140,248,0.8)]"
-                      animate={{ opacity: [0.3, 1, 0.3] }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    />
-                  </motion.div>
+                    key={`support-line-${shakeEvent}`}
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    animate={{ scaleX: 1, opacity: [0, 1, 1, 0] }}
+                    transition={{
+                      duration: 1.4,
+                      times: [0, 0.15, 0.8, 1],
+                      ease: "easeInOut",
+                      delay: 0.1
+                    }}
+                    className="absolute inset-x-[5%] bottom-[4rem] lg:bottom-[6rem] h-[2px] bg-purple-300 origin-center z-10 shadow-[0_0_15px_rgba(192,132,252,0.8)] rounded-full"
+                  />
                 )}
               </AnimatePresence>
-            </div>
-
-            {[...Array(7)].map((_, i) => {
-              const isTarget = activePillar === i;
-              const hasActive = activePillar !== null;
-
-              // Base height variations
-              const baseHeight = 80 + (i % 2) * 10;
-
-              return (
+              {/* Linha FIXA quando fortalecido */}
+              {showReflection && (
                 <motion.div
-                  key={i}
-                  onClick={() => setActivePillar(isTarget ? null : i)}
-                  animate={{
-                    // Target pillar bends slightly (pressure) but DOES NOT fall
-                    rotate: isTarget ? 10 : (hasActive ? (i < activePillar ? -2 : 2) : 0),
-                    // Micro-movements from other pillars bracing the load
-                    y: isTarget ? 15 : (hasActive ? -5 : 0),
-                    backgroundColor: isTarget
-                      ? "rgba(63, 63, 70, 0.8)" // Slightly darker when under direct pressure
-                      : (hasActive ? "rgba(79, 70, 229, 0.2)" : "rgba(39, 39, 42, 1)") // Others light up with indigo energy
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    type: "spring",
-                    bounce: hasActive ? 0.4 : 0.2 // Bouncier when catching the load
-                  }}
-                  className={`
-                        w-12 lg:w-20 bg-linear-to-t from-zinc-800 to-zinc-700 
-                        rounded-sm border-t border-white/20 shadow-2xl relative cursor-pointer
-                        z-20 origin-bottom flex justify-center overflow-hidden
-                     `}
-                  style={{ height: `${baseHeight}%` }}
-                >
-                  {/* Energy Pulse Visual inside the pillar */}
-                  <AnimatePresence>
-                    {hasActive && (
-                      <motion.div
-                        initial={{ opacity: 0, y: "100%" }}
-                        animate={{
-                          opacity: [0, 0.5, 0],
-                          y: ["100%", "-20%"]
-                        }}
-                        transition={{
-                          duration: 1.5,
-                          ease: "easeOut",
-                          delay: isTarget ? 0 : 0.2 + (Math.abs(i - activePillar) * 0.1) // Ripple out from target
-                        }}
-                        className="absolute inset-x-0 bottom-0 h-full bg-linear-to-t from-indigo-500/0 via-indigo-400/40 to-indigo-500/0"
-                      />
-                    )}
-                  </AnimatePresence>
+                  key="fixed-support-line"
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={{ scaleX: 1, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="absolute inset-x-[5%] bottom-[4rem] lg:bottom-[6rem] h-[2px] bg-purple-400 origin-center z-10 shadow-[0_0_20px_rgba(192,132,252,1)] rounded-full"
+                />
+              )}
 
-                  {/* Visual distinction for target pillar handling the pressure */}
-                  {isTarget && (
-                    <motion.div
-                      animate={{ opacity: [0.2, 0.8, 0.2] }}
-                      transition={{ duration: 0.5, repeat: Infinity }}
-                      className="absolute top-10 w-6 h-6 rounded-full bg-white/10 blur-md"
-                    />
-                  )}
-                </motion.div>
-              );
-            })}
+              {[...Array(7)].map((_, i) => {
+                const isShaking = shakeEvent !== null && !showReflection;
+                const isFortifiedTarget = fortifiedWiggle?.index === i;
+                const baseHeight = 80 + (i % 2) * 10;
+                // Cada pilar tem um tilt diferente para parecer mais orgânico ao tremer
+                const shakeTilt = 18 + (i % 3) * 5; // 18, 23, 28, 18, 23, 28, 18
+                const shakeSign = i % 2 === 0 ? 1 : -1; // alternado esq/dir
+                const uniqueShake = shakeEvent ? (shakeEvent % 2) * 0.01 : 0;
+
+                return (
+                  <motion.div
+                    key={i}
+                    onClick={() => handlePillarClick(i)}
+                    animate={{
+                      // Fortalecido: wiggle mínimo só no clicado
+                      // Não fortalecido: TODOS tremem com shake dramático quase caindo
+                      rotate: showReflection
+                        ? (isFortifiedTarget ? [0, shakeSign * 3, shakeSign * -1.5, 0] : 0)
+                        : (isShaking ? [0, shakeSign * (shakeTilt + uniqueShake), shakeSign * -4, shakeSign * 2, 0] : 0),
+                      y: showReflection ? -20 : (isShaking ? [0, -3, 1, 0] : 0),
+                      height: showReflection ? `110%` : `${baseHeight}%`,
+                      backgroundColor: showReflection
+                        ? "rgba(120, 50, 200, 0.35)"
+                        : (isShaking ? "rgba(63, 63, 70, 0.9)" : "rgba(39, 39, 42, 1)"),
+                      borderColor: showReflection ? "rgba(192, 132, 252, 0.6)" : "rgba(255, 255, 255, 0.15)",
+                      boxShadow: showReflection
+                        ? "0 0 20px rgba(168, 85, 247, 0.5), inset 0 0 15px rgba(168, 85, 247, 0.2)"
+                        : "none"
+                    }}
+                    transition={{
+                      duration: showReflection
+                        ? (isFortifiedTarget ? 0.5 : 0.8)
+                        : (isShaking ? 0.9 + (i * 0.04) : 0.4),
+                      delay: isShaking && !showReflection ? i * 0.04 : 0,
+                      ease: "easeOut"
+                    }}
+                    className={`
+                          w-12 lg:w-20 bg-linear-to-t from-zinc-900 to-zinc-800 
+                          rounded-sm border-t shadow-2xl relative cursor-pointer
+                          z-20 origin-bottom flex justify-center overflow-visible
+                       `}
+                  >
+                    {/* Nós de Conexão nos pilares quando tremem */}
+                    <AnimatePresence>
+                      {isShaking && (
+                        <motion.div
+                          key={`node-${shakeEvent}-${i}`}
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: [0, 1.3, 1], opacity: [0, 1, 1, 0] }}
+                          transition={{
+                            duration: 1.4,
+                            times: [0, 0.15, 0.8, 1],
+                            delay: 0.1 + i * 0.04,
+                            ease: "easeInOut"
+                          }}
+                          className="absolute bottom-[calc(4rem-3px)] lg:bottom-[calc(6rem-3px)] w-[6px] h-[6px] rounded-full bg-white shadow-[0_0_10px_#fff] z-30"
+                        />
+                      )}
+                    </AnimatePresence>
+
+                    {/* Nó fixo permanente quando fortalecido */}
+                    {showReflection && (
+                      <div className="absolute bottom-[calc(4rem-3px)] lg:bottom-[calc(6rem-3px)] w-[6px] h-[6px] rounded-full bg-purple-300 shadow-[0_0_8px_rgba(192,132,252,0.9)] z-30" />
+                    )}
+
+                    {/* Root Glow que sobe */}
+                    <AnimatePresence>
+                      {(isShaking || showReflection) && (
+                        <motion.div
+                          key={`glow-${showReflection ? 'reflection' : shakeEvent}-${i}`}
+                          initial={{ opacity: 0, scaleY: 0 }}
+                          animate={{
+                            opacity: showReflection ? 0.8 : [0.5, 1, 0],
+                            scaleY: showReflection ? 1 : [0.2, 0.8, 0]
+                          }}
+                          exit={{ opacity: 0 }}
+                          transition={{
+                            duration: showReflection ? 1 : 1.2,
+                            ease: "easeOut",
+                            delay: showReflection ? 0 : i * 0.04
+                          }}
+                          className={`absolute inset-x-0 bottom-0 h-full origin-bottom mix-blend-screen ${showReflection
+                            ? 'bg-linear-to-t from-purple-800 to-purple-400/60'
+                            : 'bg-linear-to-t from-purple-600/0 via-purple-400/60 to-purple-600/0'
+                            }`}
+                        />
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Response Message */}
+          {/* Response Message - Fade-in PÓS ESTABILIZAÇÃO */}
           <div className="h-24 flex items-center justify-center flex-col relative w-full max-w-2xl px-4">
             <AnimatePresence mode="wait">
-              {activePillar !== null ? (
+              {shakeEvent !== null ? (
                 <motion.div
                   key="active-message"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ delay: 0.7, duration: 0.5 }}
                   className="text-center"
                 >
-                  <p className="text-xl lg:text-3xl text-white font-display uppercase tracking-tight font-bold mb-2">
+                  <p className="text-xl lg:text-3xl text-white font-display uppercase tracking-tight font-bold mb-2 text-balance leading-tight">
                     A estrutura permanece firme quando a carga é compartilhada.
-                  </p>
-                  <p className="text-sm lg:text-lg text-indigo-200/80 font-roboto">
-                    Quando todos os pilares funcionam juntos, a pressão não derruba — fortalece.
                   </p>
                 </motion.div>
               ) : (
@@ -535,35 +612,65 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
             </AnimatePresence>
           </div>
 
-          {/* Reflection Button */}
-          <AnimatePresence>
-            {activePillar !== null && !showReflection && (
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ delay: 1 }} // Appear slightly after message
-                onClick={() => setShowReflection(true)}
-                className="mt-8 px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-400 hover:text-white text-xs font-bold uppercase tracking-widest rounded-full transition-all"
-              >
-                RELEVANTE
-              </motion.button>
-            )}
+          {/* Reflection Button & Message */}
+          <div className="min-h-[200px] flex justify-center items-start w-full relative z-40">
+            <AnimatePresence mode="wait">
+              {shakeEvent !== null && !showReflection && (
+                <motion.button
+                  key={`btn-relevante-${shakeEvent}`}
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    boxShadow: ["0px 0px 0px rgba(168,85,247,0)", "0px 0px 30px rgba(168,85,247,0.7)", "0px 0px 0px rgba(168,85,247,0)"]
+                  }}
+                  exit={{ opacity: 0, scale: 0.8, y: -20, filter: "blur(10px)" }}
+                  transition={{
+                    delay: 0.8,
+                    boxShadow: { duration: 1.5, repeat: Infinity }
+                  }}
+                  onClick={handleElevarClick}
+                  className="mt-4 px-12 py-4 bg-linear-to-r from-purple-500 to-indigo-600 hover:from-purple-400 hover:to-indigo-500 text-white text-sm lg:text-base font-black uppercase tracking-widest rounded-full transition-all shadow-xl active:scale-95 border border-purple-300/50 flex items-center gap-3 overflow-hidden"
+                >
+                  <motion.div
+                    animate={{ y: [-3, 3, -3] }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+                    className="flex flex-col -gap-4"
+                  >
+                    <ArrowRight className="-rotate-90 text-purple-200" size={16} />
+                  </motion.div>
+                  FORTALEÇA OS PILARES
+                  <motion.div
+                    animate={{ y: [-3, 3, -3] }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+                  >
+                    <ArrowRight className="-rotate-90 text-purple-200" size={16} />
+                  </motion.div>
+                </motion.button>
+              )}
 
-            {showReflection && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="mt-8 p-6 lg:p-8 bg-indigo-900/20 border border-indigo-500/30 rounded-3xl backdrop-blur-md max-w-xl text-center relative overflow-hidden group"
-              >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl -mr-10 -mt-10" />
-                <Quote className="text-indigo-400 mb-4 mx-auto opacity-50" size={32} />
-                <p className="text-lg lg:text-xl text-indigo-100 font-roboto font-light leading-relaxed italic relative z-10">
-                  "Um sistema saudável não depende de um único ponto forte. A estabilidade vem do funcionamento conjunto."
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              {showReflection && (
+                <motion.div
+                  key="reflection-text"
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
+                  className="mt-0 p-6 lg:p-10 bg-purple-900/30 border border-purple-500/50 rounded-3xl backdrop-blur-xl max-w-2xl text-center relative overflow-hidden group shadow-[0_0_50px_rgba(168,85,247,0.15)]"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl -mr-10 -mt-10" />
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl -ml-10 -mb-10" />
+                  <Quote className="text-purple-400 mb-6 mx-auto opacity-70" size={40} />
+                  <p className="text-xl lg:text-2xl text-white font-display uppercase tracking-tight leading-none italic relative z-10 text-balance mb-2">
+                    "A ESTABILIDADE VEM DO FUNCIONAMENTO CONJUNTO."
+                  </p>
+                  <p className="text-sm lg:text-base text-purple-300 font-roboto font-medium tracking-wide">
+                    Um sistema saudável nunca depende de um único ponto forte.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
         </div>
       </div>
