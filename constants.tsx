@@ -23,8 +23,8 @@ export const INITIAL_SLIDES: Slide[] = [
       "05 • DNA e Cultura de Serviço",
       "11 • O que é o MOVE (Célula)",
       "18 • Pilares e Prática do Encontro",
-      "27 • Liderança e Responsabilidades",
-      "31 • Acompanhamento e Multiplicação"
+      "28 • Liderança e Responsabilidades",
+      "32 • Acompanhamento e Multiplicação"
     ],
   },
   {
@@ -211,13 +211,14 @@ export const INITIAL_SLIDES: Slide[] = [
   },
   {
     id: 19,
-    title: "Os 7 Pilares",
+    title: "Os 8 Pilares",
     type: 'checklist',
     checklist: [
       { id: 'pil1', text: "Comunhão" },
       { id: 'pil2', text: "Cuidado" },
       { id: 'pil3', text: "Evangelização" },
       { id: 'pil4', text: "Ensino" },
+      { id: 'pildisc', text: "Discipulado" },
       { id: 'pil5', text: "Fortalecimento" },
       { id: 'pil6', text: "Crescimento" },
       { id: 'pil7', text: "Multiplicação" }
@@ -275,20 +276,40 @@ export const INITIAL_SLIDES: Slide[] = [
     id: 23,
     title: "Ensino",
     type: 'checklist',
-    subtitle: "Bíblia aplicada à vida com clareza e participação.",
+    subtitle: "Ensino bíblico prático, curto e claro, que orienta a vida e gera aplicação na semana.",
     checklist: [
-      { id: 'ens1', text: "Talk simples e fiel à Palavra" },
-      { id: 'ens2', text: "Perguntas de aplicação prática" },
-      { id: 'ens3', text: "Todos participam, não só um fala" }
+      { id: 'ens1', text: "Compartilhamento breve e objetivo, com base na Palavra" },
+      { id: 'ens2', text: "Mensagem clara, simples e fácil de aplicar" },
+      { id: 'ens3', text: "Incentivo à prática durante a semana" },
+      { id: 'ens4', text: "Direcionamento que fortalece a fé e a obediência" }
     ],
     measurement: [
-      "Pessoas entendem e explicam com simplicidade",
-      "Há mudança na semana",
-      "O grupo amadurece"
+      "As pessoas entendem com clareza a mensagem",
+      "A aplicação prática fica evidente e possível",
+      "Há incentivo e resposta para viver o ensino na semana",
+      "O grupo demonstra mudança de atitude a partir da Palavra"
     ]
   },
   {
     id: 24,
+    title: "Discipulado",
+    type: 'checklist',
+    subtitle: "Caminho de formação contínua em Cristo, desenvolvendo caráter, vida espiritual e serviço.",
+    checklist: [
+      { id: 'disc1', text: "Acompanhamento intencional de pessoas no processo de fé" },
+      { id: 'disc2', text: "Desenvolvimento de caráter cristão nas atitudes do dia a dia" },
+      { id: 'disc3', text: "Formação espiritual com oração, Palavra e obediência" },
+      { id: 'disc4', text: "Capacitação ministerial para servir com maturidade e propósito" }
+    ],
+    measurement: [
+      "Há mudança de caráter visível nas atitudes e relacionamentos",
+      "A pessoa cresce em disciplinas espirituais (oração, Palavra, constância)",
+      "Assume responsabilidades ministeriais com fidelidade e maturidade",
+      "Começa a acompanhar e fortalecer outras pessoas na caminhada"
+    ]
+  },
+  {
+    id: 25,
     title: "Fortalecimento",
     type: 'checklist',
     subtitle: "Renovo espiritual e encorajamento para continuar firme.",
@@ -304,7 +325,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 25,
+    id: 26,
     title: "Crescimento",
     type: 'checklist',
     subtitle: "Formação de discípulos e maturidade espiritual.",
@@ -320,7 +341,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 26,
+    id: 27,
     title: "Multiplicação",
     type: 'checklist',
     subtitle: "Abrir espaço para novas vidas e proteger o cuidado.",
@@ -336,27 +357,27 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 27,
+    id: 28,
     title: "Se um pilar cair...",
     type: 'content', // Using content type but will catch in SlideContent with special logic
     subtitle: "A estrutura inteira sofre.",
     content: []
   },
   {
-    id: 28,
+    id: 29,
     title: "Mas quando a estrutura está alinhada...",
     type: 'content', // Interactive alignment slide 
     subtitle: "Toque em um pilar para testar a resistência.",
     content: []
   },
   {
-    id: 29,
+    id: 30,
     title: "Líderes e Anfitriões",
     type: 'capa',
     subtitle: "O coração do serviço nas casas.",
   },
   {
-    id: 30,
+    id: 31,
     title: "Líder do MOVE",
     type: 'checklist',
     subtitle: "Responsabilidades",
@@ -389,7 +410,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 31,
+    id: 32,
     title: "Anfitrião",
     type: 'checklist',
     subtitle: "Responsabilidades e Postura",
@@ -416,7 +437,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 32,
+    id: 33,
     title: "Líder em treinamento",
     type: 'checklist',
     subtitle: "Responsabilidades e Postura",
@@ -439,7 +460,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 33,
+    id: 34,
     title: "Como ocorre o MOVE na prática",
     type: 'checklist',
     subtitle: "Roteiro e Regras de Ouro",
@@ -458,7 +479,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 34,
+    id: 35,
     title: "Regras de Ouro",
     type: 'checklist',
     subtitle: "Princípios inegociáveis do encontro",
@@ -473,7 +494,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 35,
+    id: 36,
     title: "Acompanhamento Semanal",
     type: 'content',
     content: [
@@ -486,13 +507,13 @@ export const INITIAL_SLIDES: Slide[] = [
     callout: "VOCÊ NÃO É UM LÍDER DE REUNIÃO. VOCÊ É UM PASTOR DE PESSOAS."
   },
   {
-    id: 36,
+    id: 37,
     title: "Saúde do MOVE",
     type: 'reflection',
     question: "A verdadeira medida de saúde do MOVE não é só casa cheia. É vida acompanhada."
   },
   {
-    id: 37,
+    id: 38,
     title: "Confidencialidade",
     type: 'content',
     content: [
@@ -504,7 +525,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 38,
+    id: 39,
     title: "Crescimento e multiplicação",
     type: 'content',
     content: [
@@ -514,7 +535,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 39,
+    id: 40,
     title: "Comunicação e Honra",
     type: 'checklist',
     checklist: [
@@ -525,7 +546,7 @@ export const INITIAL_SLIDES: Slide[] = [
     ]
   },
   {
-    id: 40,
+    id: 41,
     title: "Finalização",
     type: 'capa',
     subtitle: "Bom é isso!\nVamos juntos até o final.\nNinguém fica para trás.",

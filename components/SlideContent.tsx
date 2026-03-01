@@ -174,13 +174,14 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
   }
 
   // DESIGN ESPECIAL - DETALHAMENTO DOS PILARES (Slides 20-26)
-  if (slide.id >= 20 && slide.id <= 26) {
+  if (slide.id >= 20 && slide.id <= 27) {
     // Icon Logic for Pillars
     let PillarIcon = Crown; // Default
     if (slide.title === "Comunhão") PillarIcon = Users;
     if (slide.title === "Cuidado") PillarIcon = HeartHandshake;
     if (slide.title === "Evangelização") PillarIcon = Speaker;
     if (slide.title === "Ensino") PillarIcon = BookOpen;
+    if (slide.title === "Discipulado") PillarIcon = Leaf;
     if (slide.title === "Fortalecimento") PillarIcon = Zap;
     if (slide.title === "Crescimento") PillarIcon = TrendingUp;
     if (slide.title === "Multiplicação") PillarIcon = Network;
@@ -271,6 +272,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                   {i === 0 && <Eye className="text-indigo-400 shrink-0" size={20} />}
                   {i === 1 && <UserPlus className="text-indigo-400 shrink-0" size={20} />}
                   {i === 2 && <TrendingUp className="text-indigo-400 shrink-0" size={20} />}
+                  {i >= 3 && <Star className="text-indigo-400 shrink-0" size={20} />}
 
                   <p className="text-base md:text-lg text-indigo-100 font-roboto font-light leading-tight">
                     {text}
@@ -286,7 +288,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
   }
 
   // INTERATIVO - SE UM PILAR CAIR (Slide 27)
-  if (slide.id === 27) {
+  if (slide.id === 28) {
     const [isFallen, setIsFallen] = React.useState(false);
 
     return (
@@ -318,7 +320,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
 
           {/* Pillars Visual */}
           <div className="flex items-end gap-2 lg:gap-4 h-[40vh] mb-12 lg:mb-20 px-4">
-            {[...Array(7)].map((_, i) => {
+            {[...Array(8)].map((_, i) => {
               // Logic: Pillar 3 falls first, knocking 4, 5, 6. 
               // 0,1,2 stay standing? Or maybe 3 falls right?
               // Let's say index 3 (middle) falls right.
@@ -399,7 +401,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
 
   // INTERATIVO - ESTRUTURA ALINHADA (Slide 28)
   // INTERATIVO - ESTRUTURA ALINHADA (Slide 28)
-  if (slide.id === 28) {
+  if (slide.id === 29) {
     // shakeEvent: todos os pilares tremem (não há target específico)
     const [shakeEvent, setShakeEvent] = React.useState<number | null>(null);
     const [showReflection, setShowReflection] = React.useState(false);
@@ -497,7 +499,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                 />
               )}
 
-              {[...Array(7)].map((_, i) => {
+              {[...Array(8)].map((_, i) => {
                 const isShaking = shakeEvent !== null && !showReflection;
                 const isFortifiedTarget = fortifiedWiggle?.index === i;
                 const baseHeight = 80 + (i % 2) * 10;
@@ -677,7 +679,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
     );
   }
   // DESIGN ESPECIAL - LÍDERES E ANFITRIÕES (Slide 29)
-  if (slide.id === 29) {
+  if (slide.id === 30) {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden bg-black px-6 md:px-16 lg:px-24">
 
@@ -728,7 +730,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
     );
   }
   // DESIGN LÍDER DO MOVE (Slide 30 - Três Seções)
-  if (slide.id === 30) {
+  if (slide.id === 31) {
     const checklistItems = slide.checklist || [];
     const expectations = slide.expectations || [];
     const commitments = slide.commitments || [];
@@ -825,7 +827,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
     );
   }
   // DESIGN ANFITRIÃO E LÍDER EM TREINAMENTO (Slide 31 e 32 - Duas Seções)
-  if (slide.id === 31 || slide.id === 32) {
+  if (slide.id === 32 || slide.id === 33) {
     const checklistItems = slide.checklist || [];
     const posture = slide.posture || [];
 
@@ -901,7 +903,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
   }
 
   // DESIGN MOVE NA PRÁTICA - ROTEIRO (Slide 33)
-  if (slide.id === 33) {
+  if (slide.id === 34) {
     const timeline = slide.timeline || [];
 
     // Header Padrão Refatorado para Slide 32
@@ -1007,7 +1009,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
   }
 
   // DESIGN FINALIZAÇÃO (Slide 40) - MUST come before slide.type === 'capa' check
-  if (slide.id === 40) {
+  if (slide.id === 41) {
     return (
       <div key={slide.id} className="flex flex-col h-full relative px-6 md:px-16 lg:px-24 items-center justify-center text-center overflow-hidden isolate">
         {/* Background Effects */}
@@ -1678,7 +1680,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
   }
 
   // DESIGN SAUDE DO MOVE (Slide 35 - Index 36) - SECTION BREAK
-  if (slide.id === 35) {
+  if (slide.id === 36) {
     return (
       <div key={slide.id} className="relative w-full h-full flex items-center justify-center overflow-hidden px-6 md:px-16 lg:px-24">
         {/* Background Visuals */}
@@ -1710,7 +1712,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
   }
 
   // DESIGN CONFIDENCIALIDADE (Slide 36)
-  if (slide.id === 36) {
+  if (slide.id === 37) {
     const rawContent = slide.content || slide.checklist?.map(c => c.text) || [];
     // Extract first item as Headline if it exists, otherwise empty
     const headline = rawContent.length > 0 ? rawContent[0] : null;
@@ -1768,7 +1770,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
   }
 
   // DESIGN CRESCIMENTO E MULTIPLICAÇÃO (Slide 37)
-  if (slide.id === 37) {
+  if (slide.id === 38) {
     const rawContent = slide.content || [];
     // Extract first item as Hero Statement
     const heroStatement = rawContent.length > 0 ? rawContent[0] : null;
@@ -1853,7 +1855,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
   }
 
   // DESIGN COMUNICAÇÃO E HONRA (Slide 38)
-  if (slide.id === 38) {
+  if (slide.id === 39) {
     // Custom content mapping for visual impact
     const cards = [
       {
@@ -1964,7 +1966,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
 
 
   // DESIGN FINALIZAÇÃO (Slide 39)
-  if (slide.id === 39) {
+  if (slide.id === 40) {
     return (
       <div className="flex flex-col h-full relative px-6 md:px-16 lg:px-24 items-center justify-center text-center overflow-hidden">
         {/* Background Effects */}
@@ -2030,7 +2032,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
       </div>
 
       <header className={`relative z-10 ${(slide.id === 7 || slide.id === 8) ? 'hidden' : ''} ${(slide.id === 15 || slide.id === 16 || slide.id === 17) ? 'mb-16 lg:mb-32' :
-        (slide.id === 34) ? 'mb-6 lg:mb-12' : // Reduced margin for Slide 34
+        (slide.id === 35) ? 'mb-6 lg:mb-12' : // Reduced margin for Slide 34
           'mb-12 lg:mb-16'
         }`}>
         <div className="flex items-center gap-4 mb-5">
@@ -2038,7 +2040,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
           <span className="text-[9px] font-black uppercase tracking-[0.6em] text-zinc-500 font-ui">{slide.reference || "MOVE"}</span>
         </div>
         <div className="relative">
-          <h2 className={`${slide.id === 34
+          <h2 className={`${slide.id === 35
             ? 'text-[clamp(1.8rem,5vw,4rem)] lg:text-[7vh]' // Smaller title for Slide 34 to fit "Acompanhamento"
             : 'text-[clamp(2.5rem,8vw,5.5rem)] lg:text-[8.5vh]'
             } font-display leading-[0.9] text-white uppercase tracking-tighter`}>
@@ -2077,7 +2079,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
         className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 relative z-10 ${(slide.id === 15 || slide.id === 16 || slide.id === 17) ? 'items-center content-center' : 'items-start'
           }`}
       >
-        <div className={`${slide.title === "Somos a MVP" ? "lg:col-span-12 xl:col-span-12" : (slide.id === 8 || slide.id === 7 || slide.id === 9 || slide.id === 10 || slide.id === 19 || slide.id === 15 || slide.id === 16 || slide.id === 17 || slide.id === 34) ? "lg:col-span-12" : "lg:col-span-7 xl:col-span-7"} space-y-12`}>
+        <div className={`${slide.title === "Somos a MVP" ? "lg:col-span-12 xl:col-span-12" : (slide.id === 8 || slide.id === 7 || slide.id === 9 || slide.id === 10 || slide.id === 19 || slide.id === 15 || slide.id === 16 || slide.id === 17 || slide.id === 35) ? "lg:col-span-12" : "lg:col-span-7 xl:col-span-7"} space-y-12`}>
           {slide.content && (
             <>
               {/* Layout Exclusivo Slide 08 (Nosso compromisso) e 09 (Como Servimos) */}
@@ -2137,7 +2139,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                     )}
                   </div>
                 </div>
-              ) : slide.id === 34 ? (
+              ) : slide.id === 35 ? (
                 /* Slide 35: Acompanhamento Semanal (Custom Visual Layout) */
                 /* Slide 34: Acompanhamento Semanal (Custom Visual Layout) */
                 <div className="w-full h-full flex flex-col pt-0 lg:pt-8">
@@ -2249,13 +2251,13 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
           )}
 
           {slide.checklist && (
-            <div className={`grid grid-cols-1 gap-6 ${(slide.title === "Missão" || slide.title === "Visão") ? "md:grid-cols-3" : (slide.title === "Os 7 Pilares") ? "md:grid-cols-3 lg:grid-cols-4" : "md:grid-cols-2"}`}>
+            <div className={`grid grid-cols-1 gap-6 ${(slide.title === "Missão" || slide.title === "Visão") ? "md:grid-cols-3" : (slide.title === "Os 8 Pilares") ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-2"}`}>
               {slide.checklist.map((item, idx) => {
                 // Lógica de ícones específicos para a Missão e Visão
                 let Icon = CheckCircle;
 
                 // Slide 33: Regras de Ouro (Specific Icon)
-                if (slide.id === 33) {
+                if (slide.id === 34) {
                   Icon = Crown;
                 }
                 if (slide.title === "Missão") {
@@ -2273,13 +2275,13 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                   if (item.id === 'vis4') Icon = Zap;
                   if (item.id === 'vis5') Icon = Globe;
                 }
-                // Slide 19: 7 Pilares
-                // Slide 19: 7 Pilares
-                if (slide.title === "Os 7 Pilares") {
+                // Slide 19: 8 Pilares
+                if (slide.title === "Os 8 Pilares") {
                   if (item.id === 'pil1') Icon = Users; // Comunhão
                   if (item.id === 'pil2') Icon = HeartHandshake; // Cuidado
                   if (item.id === 'pil3') Icon = Speaker; // Evangelização
                   if (item.id === 'pil4') Icon = BookOpen; // Ensino
+                  if (item.id === 'pildisc') Icon = Leaf; // Discipulado
                   if (item.id === 'pil5') Icon = Zap; // Fortalecimento
                   if (item.id === 'pil6') Icon = TrendingUp; // Crescimento
                   if (item.id === 'pil7') Icon = Network; // Multiplicação
@@ -2327,7 +2329,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
                 }
 
                 // Definir cores dinamicamente (Padrão vs Regras de Ouro)
-                const isGold = slide.id === 33;
+                const isGold = slide.id === 34;
                 const cardBorder = isGold ? "border-amber-500/20 hover:border-amber-500/50" : "border-white/[0.04] hover:border-purple-600/30";
                 const cardBg = isGold ? "bg-amber-900/10 hover:bg-amber-900/20" : "bg-white/2 hover:bg-white/5";
                 const iconBg = isGold ? "bg-amber-500/10 border-amber-500/20" : "bg-purple-900/10 border-purple-500/10";
@@ -2353,7 +2355,7 @@ const SlideContent: React.FC<SlideContentProps> = ({ slide, completedItems, onTo
           )}
         </div>
 
-        {(slide.callout /* Only show sidebar callout if NOT slide 7 (moved) */ && slide.id !== 7 && slide.id !== 34 || slide.question || isEditMode) && (
+        {(slide.callout /* Only show sidebar callout if NOT slide 7 (moved) */ && slide.id !== 7 && slide.id !== 35 || slide.question || isEditMode) && (
           <div className="lg:col-span-5 xl:col-span-5 space-y-8 lg:pt-4">
             {((slide.callout && slide.id !== 7) || isEditMode) && (
               <motion.div
